@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  user-select: none;
+  overflow: hidden;
+}
+
+.Sidebar {
+  -webkit-app-region: drag;
+}
+
+.NoDrag,
+h1 {
+  -webkit-app-region: no-drag;
+  font-family: 'Righteous', cursive;
+  white-space: nowrap;
+}
+
+img {
+  object-fit: cover;
+}
+
+.Pfp {
+  box-shadow: 0 0 1em white;
+}
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  -ms-appearance: none;
+}
+
+select::after {
+  content: '\25BC';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0 1em;
+  background: #34495E;
+  pointer-events: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+  opacity: 0;
+  appearance: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  display: none;
+}
