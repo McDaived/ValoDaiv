@@ -1,0 +1,73 @@
+{
+  "name": "valodaiv",
+  "productName": "ValoDaiv",
+  "description": "not bannable , uses the local client api",
+  "author": "Daived",
+  "private": true,
+  "version": "0.1",
+  "main": "public/main.js",
+  "homepage": "./",
+  "build": {
+    "extends": null,
+    "appId": "Valo Daiv",
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "icon": "icon.ico"
+    },
+    "nsis": {
+      "installerIcon": "icon.ico",
+      "uninstallerIcon": "icon.ico",
+      "uninstallDisplayName": "Valo Daiv",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": false
+    },
+    "files": [
+      "dist/**/*",
+      "build/**/*",
+      "build/*/*",
+      "build/*/**",
+      "build/**",
+      "build/*",
+      "build/assets/*",
+      "build/assets/**",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "directories": {
+      "buildResources": "assets"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint src --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview",
+    "electron:build": "electron-builder -c.extraMetadata.main=build/main.js"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.9",
+    "@formkit/auto-animate": "^1.0.0-beta.6",
+    "adm-zip": "^0.5.10",
+    "axios": "^1.4.0",
+    "electron-is-dev": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-icons": "^4.8.0",
+    "sweetalert2": "^11.7.5"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react": "^4.0.0",
+    "autoprefixer": "^10.4.14",
+    "eslint": "^8.38.0",
+    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.3.4",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.2",
+    "vite": "^4.3.2"
+  }
+}
