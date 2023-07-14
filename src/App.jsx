@@ -22,8 +22,8 @@ function App() {
       text: 'Account Not Authorized',
       toast: true,
       position: 'top-end',
-      background: '#682525',
-      color: '#000000',
+      background: '#000000',
+      color: '#F9F6F0',
       showConfirmButton: false,
       timer: 3000
   })
@@ -31,11 +31,11 @@ function App() {
   return (
     <div className='bg-red-900 relative flex w-screen h-screen' ref={parent}>
       <Sidebar pageSetter={pageSetter} />
-      {page == 0 && <div className='w-[70%] h-[100%] flex flex-col gap-3 justify-center items-center text-red'>
+      {page == 0 && <div className='w-[70%] h-[100%] flex flex-col gap-3 justify-center items-center text-white'>
         <h1 className='text-5xl italic p-3'>ValoDaiv</h1>
-        <h1 className='text-2xl italic'>Master of Impossible</h1>
-		<h1 className='text-2xl italic'>Welcome To My World</h1>
-		<h1 className='text-2xl italic'>Dont forget follow me on instagram @eii3</h1>
+        <h1 className='text-2xl bold'>Master of Impossible</h1>
+		<h1 className='text-2xl bold'>Welcome To My World</h1>
+		<h1 className='text-2xl bold'>Dont forget follow me on instagram @eii3</h1>
       </div>}
       {page == 1 && <Locker user={user} />}
       {page == 2 && <Profile user={user} />}
