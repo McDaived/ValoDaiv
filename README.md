@@ -10,6 +10,7 @@ To know what is that Visit [Valorant API](https://valapidocs.techchrism.me/)
 * Rank Editor
 
 # ![](https://img.icons8.com/?size=60&id=DWiebo2M1Bbt&format=svg) Usage :
+- [x] **Authorize Account : when game is open press Authorize Account to be able use all Features.**
 
 - [x] **skin changer : After equipping a skin you have to restart your game to see it in the collection + for now im working for improve that is mean api skin shutdown just for a few days.**
 
