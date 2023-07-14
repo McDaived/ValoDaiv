@@ -46,14 +46,14 @@ const Locker = ({ user }) => {
         setAgent(PrevAgent => PrevAgent - 1)
     }
     return (
-        <div className='w-[70%] h-[100%] flex flex-col gap-3 justify-center items-center text-red p-3'>
-            <button className='NoDrag w-[100%] bg-red-200 hover:bg-red-300 p-3 rounded-lg cursor-pointer transition-all duration-100 ease-linear relative flex justify-center items-center mb-auto' onClick={toggleLocker}>Agent Lock:  {locker ? 'On' : 'Off'}</button>
-            <div className='bg-black-500 w-[100%] h-[100%] gap-3 p-3 rounded-lg relative flex flex-col justify-center items-center'>
-                <h1 className='text-5xl bold p-3'>{Agents[Agent]?.displayName}</h1>
+        <div className='w-[70%] h-[100%] flex flex-col gap-3 justify-center items-center text-white p-3'>
+            <button className='NoDrag w-[100%] bg-black hover:bg-red-500 p-3 rounded-lg cursor-pointer transition-all duration-100 ease-linear relative flex justify-center items-center mb-auto' onClick={toggleLocker}>Agent Lock:  {locker ? 'On' : 'Off'}</button>
+            <div className='bg-red-900 w-[100%] h-[100%] gap-3 p-3 rounded-f relative flex flex-col justify-center items-center'>
+                <h1 className='text-6xl bold p-3'>{Agents[Agent]?.displayName}</h1>
                 <img src={Agents[Agent]?.displayIcon} className='Pfp w-[50%] rounded-lg mt-auto' />
                 <div className='flex gap-3 mt-auto relative w-[100%]'>
-                    <button className='NoDrag bg-red-700 w-[50%] p-3 rounded-lg hover:bg-black-600 transition-all duration-100 ease-linear' onClick={previousAgent}>Previous</button>
-                    <button className='NoDrag bg-red-700 w-[50%] p-3 rounded-lg hover:bg-black-600 transition-all duration-100 ease-linear' onClick={nextAgent}>Next</button>
+                    <button className='NoDrag bg-black w-[50%] p-3 rounded-lg hover:bg-red-500 transition-all duration-100 ease-linear' onClick={previousAgent}>Previous</button>
+                    <button className='NoDrag bg-black w-[50%] p-3 rounded-lg hover:bg-red-500 transition-all duration-100 ease-linear' onClick={nextAgent}>Next</button>
                 </div>
             </div>
         </div>
