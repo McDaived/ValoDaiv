@@ -10,7 +10,7 @@ To know what is that Visit [Valorant API](https://valapidocs.techchrism.me/)
 * Rank Editor
 
 # ![](https://img.icons8.com/?size=60&id=DWiebo2M1Bbt&format=svg) Usage :
-You can build the source , and download the compiled release [ValoDaiv]([https://svgshare.com/i/vHt.svg](https://github.com/McDaived/ValoDaiv/releases))!
+You can build the source , and download the compiled release [ValoDaiv]([https://svgshare.com/i/vHt.svg](https://github.com/McDaived/ValoDaiv/releases)!
 
 ### ![](https://img.icons8.com/?size=60&id=N5H8YRvduAGy&format=svg) Using the source :
 Install the requirements using the following command:
