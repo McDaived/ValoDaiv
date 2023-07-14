@@ -11,9 +11,11 @@ To know what is that Visit [Valorant API](https://valapidocs.techchrism.me/)
 
 # ![](https://img.icons8.com/?size=60&id=DWiebo2M1Bbt&format=svg) Usage :
 
-* skin changer : After equipping a skin you have to restart your game to see it in the collection + for now im working for improve that is mean api skin shutdown just for a few days.
-* rank editor : It will show on your profile when you open ur friends panel, the modified rank is visible to your friends.
-* insta locker : Well it should work, just first pick the agent then turn it on before joining a match and itll automatically turn off when you join a match, meaning it locked the agent for you.
+- [x] **skin changer : After equipping a skin you have to restart your game to see it in the collection + for now im working for improve that is mean api skin shutdown just for a few days.**
+
+- [x] **rank editor : It will show on your profile when you open ur friends panel, the modified rank is visible to your friends.**
+
+- [x] **insta locker : Well it should work, just first pick the agent then turn it on before joining a match and itll automatically turn off when you join a match, meaning it locked the agent for you.**
 
 You can build the source , and download the compiled release [ValoDaiv](https://github.com/McDaived/ValoDaiv/releases)!
 
