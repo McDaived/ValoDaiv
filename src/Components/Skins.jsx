@@ -24,25 +24,25 @@ const Skins = () => {
     const equipSkin = (skinUid, skinName) => {
         ipcRenderer.send('equip', skinUid);
         Swal.fire({
-            icon: 'Skin Has Been Set',
+            icon: 'success',
             text: 'Equipped ' + skinName,
             toast: true,
             position: 'top-end',
-            background: '#682525',
-            color: '#000000',
+            background: '#000000',
+            color: '#F9F6F0',
             showConfirmButton: false,
             timer: 3000
         })
     }
     return (
-        <div className='w-[70%] h-[100%] flex flex-col gap-3 items-center text-red p-3'>
-            <input value={skinName} onChange={(e) => { setSkinName(e.target.value) }} className='outline-none border-none bg-red-700 p-3 rounded-lg w-[100%]' placeholder='Search Skins' />
+        <div className='w-[70%] h-[100%] flex flex-col gap-3 items-center text-white p-3'>
+            <input value={skinName} onChange={(e) => { setSkinName(e.target.value) }} className='outline-none border-none bg-black p-3 rounded-full w-[100%]' placeholder='Search Skins' />
             <div className='w-[100%] h-[100%] gap-3 rounded-lg relative justify-center flex flex-wrap overflow-y-scroll'>
                 {skins?.filter(skin => (skin?.displayName.toLowerCase().includes(skinName.toLowerCase()))).map(skin => {
                     return <div className='bg-red-800 w-[100%] rounded-lg p-3 gap-3 relative flex flex-col items-center justify-center flex-grow'>
                         <img src={skin?.displayIcon} className='w-[100%]' />
                         <p className='NoDrag mt-auto'>{skin?.displayName}</p>
-                        <button className='bg-red-700 rounded-lg p-3 hover:bg-black-600 transition-all duration-100 ease-linear w-[100%] NoDrag' onClick={() => { equipSkin(skin?.uuid, skin?.displayName) }}>Equip</button>
+                        <button className='bg-black rounded-lg p-3 hover:bg-red-500 transition-all duration-100 ease-linear w-[100%] NoDrag' onClick={() => { equipSkin(skin?.uuid, skin?.displayName) }}>Equip</button>
                     </div>
                 })}
             </div>
