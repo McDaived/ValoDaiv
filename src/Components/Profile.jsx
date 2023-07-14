@@ -41,23 +41,23 @@ const Profile = () => {
             text: 'Rank has been set',
             toast: true,
             position: 'top-end',
-            background: '#682525',
-            color: '#000000',
+            background: '#000000',
+            color: '#F9F6F0',
             showConfirmButton: false,
             timer: 3000
         })
     }
     return (
-        <div className='w-[70%] h-[100%] flex flex-col gap-3 justify-center items-center text-red p-3'>
-            <div className='bg-black-800 w-[100%] h-[100%] gap-3 p-3 rounded-lg relative flex flex-col justify-center items-center NoDrag'>
+        <div className='w-[70%] h-[100%] flex flex-col gap-3 justify-center items-center text-white p-3'>
+            <div className='bg-red-900 w-[100%] h-[100%] gap-3 p-3 rounded-lg relative flex flex-col justify-center items-center NoDrag'>
                 <h1 className='text-5xl bold p-3'>{Ranks[Rank]?.displayName}</h1>
                 <img src={Ranks[Rank]?.displayIcon} className='w-[50%] rounded-lg mt-auto' />
                 <div className='flex gap-3 mt-auto relative w-[100%]'>
-                    <button className='NoDrag bg-red-700 w-[50%] p-3 rounded-lg hover:bg-black-600 transition-all duration-100 ease-linear' onClick={previousRank}>Previous</button>
-                    <button className='NoDrag bg-red-700 w-[50%] p-3 rounded-lg hover:bg-black-600 transition-all duration-100 ease-linear' onClick={nextRank}>Next</button>
+                    <button className='NoDrag bg-black w-[50%] p-3 rounded-lg hover:bg-red-500 transition-all duration-100 ease-linear' onClick={previousRank}>Previous</button>
+                    <button className='NoDrag bg-black w-[50%] p-3 rounded-lg hover:bg-red-500 transition-all duration-100 ease-linear' onClick={nextRank}>Next</button>
                 </div>
             </div>
-            <button className='NoDrag w-[100%] bg-red-700 hover:bg-black-600 p-3 rounded-lg cursor-pointer transition-all duration-100 ease-linear relative flex justify-center items-center' onClick={saveRank}>Save Changes</button>
+            <button className='NoDrag w-[100%] bg-black hover:bg-red-500 p-3 rounded-lg cursor-pointer transition-all duration-100 ease-linear relative flex justify-center items-center' onClick={saveRank}>Save Changes</button>
         </div>
     )
 }
