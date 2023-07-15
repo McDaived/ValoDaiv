@@ -14,7 +14,7 @@ To know what is that Visit [Valorant API](https://valapidocs.techchrism.me/)
 
 - [x] **skin changer : After equipping a skin you have to restart your game to see it in the collection + for now im working for improve that is mean api skin shutdown just for a few days.**
 
-- [x] **rank editor : It will show on your profile when you open ur friends panel, the modified rank is visible to your friends.**
+- [x] **rank editor : It will show on your profile when you open ur friends panel and wait 10 sec, the modified rank is visible to your friends.**
 
 - [x] **insta locker : Well it should work, just first pick the agent then turn it on before joining a match and itll automatically turn off when you join a match, meaning it locked the agent for you.**
 
