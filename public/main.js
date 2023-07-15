@@ -12,9 +12,12 @@ const https = require('https');
 
 require('@electron/remote/main').initialize();
 
-var mainWindow, axiosClient, accessToken, entitlementsToken, playerUUid, riotClientVersion, myInterval, shard, configEndpoint, coreGameUrl, playerUrl, rankInterval;
+var mainWindow, axiosClient, accessToken, entitlementsToken, playerUUid, riotClientVersion, myInterval, shard, configEndpoint, coreGameUrl, playerUrl;
 
 app.whenReady().then(() => {
+	    axios.get('https://valorant-api.com/v1/version').then(res => {
+        riotClientVersion = res.data.data.riotClientVersion;
+    })
     mainWindow = new BrowserWindow({
         width: 1000,
         height: 800,
@@ -36,10 +39,10 @@ ipcMain.on('localfolder' , () => {
     mainWindow.webContents.send('localfolder', process.env.LOCALAPPDATA);
 })
 
-ipcMain.on('rankUpdate', (event, arg1) => {
+ipcMain.on('rankUpdate', (event, arg1, arg2) => {
     if (!axiosClient) return mainWindow.webContents.send('unauthorized');
-    if(rankInterval) clearInterval(rankInterval);
     let Tier = arg1;
+	let GameMode = arg2;
     let status = "chat";
     let config = {
         isValid:true,
@@ -58,7 +61,7 @@ ipcMain.on('rankUpdate', (event, arg1) => {
         isPartyOwner:true,
         partyState:'DEFAULT',
         maxPartySize:5,
-        queueId: '',
+        queueId: 'GameMode',
         partyLFM:false,
         partySize:1,
         tournamentId:'',
@@ -85,9 +88,9 @@ ipcMain.on('rankUpdate', (event, arg1) => {
             time: new Date().valueOf() + 35000
         }
     }
-    rankInterval = setInterval(() => {
-        axiosClient.put('/chat/v2/me', config);
-    }, 10000)
+    axiosClient.put('/chat/v2/me', config);
+	
+	
 });
 
 ipcMain.on('instaLock', (event, arg1, arg2) => {
