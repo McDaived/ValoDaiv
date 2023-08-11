@@ -33,7 +33,7 @@ npm run dev
 
 Run the application (server side) using the following command:
 ```
-electron .
+electron.
 ```
 If electron is not installed on your device you can install it by using `npm i electron -g`
 
