@@ -1,5 +1,5 @@
 # ValoDaiv
-**Valorant API App , Edit Rank - Equip Any Skin - Instant Locker Agint , Developed and improve by me**
+**Valorant API App , Edit Rank - Equip Any Skin - Instant Locker Agint , Im just improve it**
 
 # ![](https://svgshare.com/i/vJ6.svg) Information :
 To know what is that Visit [Valorant API](https://valapidocs.techchrism.me/)
