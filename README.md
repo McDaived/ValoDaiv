@@ -70,7 +70,39 @@ This will generate two files inside the `release/` folder:
 > The zip is the recommended portable option. The installer installs to `AppData\Local\Programs\ValoDaiv\`.
 
 ---
+```diff
 
+# v1.0
++ Complete UI redesign — modern dark theme with frameless window and custom title bar
++ Skin Changer now groups weapons by type with a searchable skin grid
++ Rank Editor now includes leaderboard position field
++ Added Customize page — player card, level border, title, account level, idle status
+- Removed Agent Instant Locker
+- Replaced Discord link with Instagram and Telegram
++ Build output now includes a portable zip and a silent NSIS installer
+
+# v0.2.0
++ Fix API 
++ improve it 
+
+# v0.1.0
++ Initial release
++ Skin Changer
++ Rank Editor
++ Agent Instant Locker
+```
+---
 ## Note
 
 This tool uses the **local Valorant client API only** and does not interact with Riot's remote servers in any unauthorized way. It is not bannable.
+
+---
+## Preview
+<img width="600" src="https://github.com/user-attachments/assets/acacc3e7-d9ee-44e5-aa45-e09435ced1b1" />
+
+<img width="600" src="https://github.com/user-attachments/assets/8230c8a0-d24f-4376-a806-8a36e410922f" />
+
+<img width="600" src="https://github.com/user-attachments/assets/74034baa-b690-4e0c-9b93-7d6b79d97bf6" />
+
+<img width="600" src="https://github.com/user-attachments/assets/a1380f9d-9bfc-48e7-9571-b59d8ebf3a6b" />
+
