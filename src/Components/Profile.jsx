@@ -1,65 +1,89 @@
-//          / __ \____ _(_)   _____  ____/ /
-//         / / / / __ `/ / | / / _ \/ __  / 
-//        / /_/ / /_/ / /| |/ /  __/ /_/ /  
-//       /_____/\__,_/_/ |___/\___/\__,_/   
 import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import Swal from 'sweetalert2'
 
+const S = {
+  page:    { width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 16, padding: 24 },
+  card:    { background: '#111116', border: '1px solid #1e1e28', borderRadius: 16, padding: 24, width: '100%', maxWidth: 340 },
+  label:   { fontSize: 11, color: '#44445e', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 8, display: 'block' },
+  input:   { width: '100%', background: '#18181e', border: '1px solid #252530', borderRadius: 10, padding: '10px 14px', color: '#f0f0f8', fontSize: 14, outline: 'none' },
+  saveBtn: { width: '100%', maxWidth: 340, padding: '12px', borderRadius: 12, background: '#ff4655', color: '#fff', border: 'none', cursor: 'pointer', fontSize: 13, fontWeight: 700, letterSpacing: 2, transition: 'background 0.15s' },
+}
+
 const Profile = () => {
-    const [Ranks, setRanks] = useState([]);
-    const [Rank, setRank] = useState(0);
-    const { ipcRenderer } = window.require('electron');
-    useEffect(() => {
-        axios.get('https://valorant-api.com/v1/competitivetiers').then(res => {
-            let newArr = res.data.data[4];
-            let newArray = [];
-            newArr.tiers.forEach(item => {
-                newArray.push({ displayName: item.tierName, displayIcon: item.largeIcon, tier: item.tier })
-            })
-            newArray = newArray.filter(rank => !rank.displayName.includes('Unused'));
-            setRanks(newArray);
-            newArr = [];
-        })
-    }, [])
-    const nextRank = () => {
-        if (Rank == Ranks.length - 1) {
-            return setRank(0)
-        }
-        setRank(PrevRank => PrevRank + 1)
-    }
-    const previousRank = () => {
-        if (Rank == 0) {
-            return setRank(Ranks.length - 1)
-        }
-        setRank(PrevRank => PrevRank - 1)
-    }
-    const saveRank = () => {
-        ipcRenderer.send('rankUpdate', Ranks[Rank]?.tier);
-        Swal.fire({
-            icon: 'success',
-            text: 'Rank has been set',
-            toast: true,
-            position: 'top-end',
-            background: '#000000',
-            color: '#F9F6F0',
-            showConfirmButton: false,
-            timer: 3000
-        })
-    }
-    return (
-        <div className='w-[70%] h-[100%] flex flex-col gap-3 justify-center items-center text-white p-3'>
-            <div className='bg-red-900 w-[100%] h-[100%] gap-3 p-3 rounded-lg relative flex flex-col justify-center items-center NoDrag'>
-                <h1 className='text-5xl bold p-3'>{Ranks[Rank]?.displayName}</h1>
-                <img src={Ranks[Rank]?.displayIcon} className='w-[50%] rounded-lg mt-auto' />
-                <div className='flex gap-3 mt-auto relative w-[100%]'>
-                    <button className='NoDrag bg-black w-[50%] p-3 rounded-lg hover:bg-red-500 transition-all duration-100 ease-linear' onClick={previousRank}>Previous</button>
-                    <button className='NoDrag bg-black w-[50%] p-3 rounded-lg hover:bg-red-500 transition-all duration-100 ease-linear' onClick={nextRank}>Next</button>
-                </div>
-            </div>
-            <button className='NoDrag w-[100%] bg-black hover:bg-red-500 p-3 rounded-lg cursor-pointer transition-all duration-100 ease-linear relative flex justify-center items-center' onClick={saveRank}>Save Changes</button>
+  const [Ranks, setRanks] = useState([])
+  const [Rank, setRank] = useState(0)
+  const [leaderboard, setLeaderboard] = useState(0)
+  const [btnHov, setBtnHov] = useState(false)
+  const { ipcRenderer } = window.require('electron')
+
+  useEffect(() => {
+    axios.get('https://valorant-api.com/v1/competitivetiers').then(res => {
+      const latest = res.data.data[res.data.data.length - 1]
+      const arr = latest.tiers
+        .map(t => ({ displayName: t.tierName, displayIcon: t.largeIcon, tier: t.tier }))
+        .filter(r => !r.displayName.includes('Unused'))
+      setRanks(arr)
+    })
+  }, [])
+
+  const next = () => setRank(p => p === Ranks.length - 1 ? 0 : p + 1)
+  const prev = () => setRank(p => p === 0 ? Ranks.length - 1 : p - 1)
+
+  const save = () => {
+    ipcRenderer.send('rankUpdate', Ranks[Rank]?.tier, parseInt(leaderboard) || 0)
+    Swal.fire({ icon: 'success', text: 'Rank updated!', toast: true, position: 'top-end', background: '#141418', color: '#f0f0f8', showConfirmButton: false, timer: 2500, iconColor: '#ff4655' })
+  }
+
+  return (
+    <div style={S.page}>
+
+      <div style={S.card}>
+        <p className='brand-font' style={{ textAlign: 'center', fontSize: 20, letterSpacing: 3, color: '#f0f0f8', margin: '0 0 16px', textTransform: 'uppercase' }}>
+          {Ranks[Rank]?.displayName || '—'}
+        </p>
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: 150, marginBottom: 20 }}>
+          {Ranks[Rank]?.displayIcon && (
+            <img src={Ranks[Rank].displayIcon} style={{ height: '100%', objectFit: 'contain', filter: 'drop-shadow(0 4px 20px rgba(255,70,85,0.2))' }} />
+          )}
         </div>
-    )
+        <div style={{ display: 'flex', justifyContent: 'center', gap: 4, marginBottom: 16 }}>
+          {Ranks.slice(0, 8).map((_, i) => (
+            <div key={i} style={{ width: Math.floor(Rank / (Ranks.length / 8)) === i ? 16 : 4, height: 3, borderRadius: 2, background: Math.floor(Rank / (Ranks.length / 8)) === i ? '#ff4655' : '#252530', transition: 'all 0.3s' }} />
+          ))}
+        </div>
+        <div style={{ display: 'flex', gap: 8 }}>
+          <ArrowBtn onClick={prev} label='◀  Prev' />
+          <ArrowBtn onClick={next} label='Next  ▶' />
+        </div>
+      </div>
+
+      <div style={S.card}>
+        <label style={S.label}>Leaderboard Position</label>
+        <p style={{ fontSize: 11, color: '#32324a', marginBottom: 10 }}>Set to 0 to hide — Radiant only</p>
+        <input type='number' min='0' max='500' value={leaderboard}
+          onChange={e => setLeaderboard(e.target.value)}
+          className='NoDrag' style={S.input} />
+      </div>
+
+      <button onClick={save} onMouseEnter={() => setBtnHov(true)} onMouseLeave={() => setBtnHov(false)}
+        className='NoDrag' style={{ ...S.saveBtn, background: btnHov ? '#ff6170' : '#ff4655' }}>
+        SAVE CHANGES
+      </button>
+
+    </div>
+  )
+}
+
+function ArrowBtn({ onClick, label }) {
+  const [hov, setHov] = useState(false)
+  return (
+    <button onClick={onClick} onMouseEnter={() => setHov(true)} onMouseLeave={() => setHov(false)}
+      className='NoDrag'
+      style={{ flex: 1, padding: '9px', borderRadius: 10, background: hov ? '#222230' : '#18181e', border: '1px solid #252530', color: hov ? '#f0f0f8' : '#60607a', fontSize: 12, fontWeight: 600, cursor: 'pointer', transition: 'all 0.15s' }}>
+      {label}
+    </button>
+  )
 }
 
 export default Profile

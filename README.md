@@ -1,56 +1,76 @@
 # ValoDaiv
-**Valorant API App , Edit Rank - Equip Any Skin - Instant Locker Agint , Im just improve it**
 
-# ![](https://svgshare.com/i/vJ6.svg) Information :
-To know what is that Visit [Valorant API](https://valapidocs.techchrism.me/)
+A Valorant companion tool that uses the **local Riot Client API** to modify your in-game profile appearance. Since it only communicates with your local client — not Riot's servers directly — it is considered safe to use.
 
-# ![](https://img.icons8.com/?size=60&id=A1J30r5KcCb7&format=svg) Features :
-* Agent Instant Locker
-* Skin Changer
-* Rank Editor
+---
 
-# ![](https://img.icons8.com/?size=60&id=DWiebo2M1Bbt&format=svg) Usage :
-- [x] **Authorize Account : when game is open press Authorize Account to be able use all Features.**
+## Features
 
-- [x] **skin changer : After equipping a skin you have to restart your game to see it in the collection + for now im working for improve that is mean api skin shutdown just for a few days.**
+- **Skin Changer** — Equip any skin on any weapon instantly from a searchable, weapon-grouped list
+- **Rank Editor** — Change your displayed rank and leaderboard position (visible to friends within ~10 seconds)
+- **Customize** — Edit your player card, level border, title, account level, and idle status
+- ~~**Agent Instant Locker**~~ *(removed)*
 
-- [x] **rank editor : It will show on your profile when you open ur friends panel and wait 10 sec, the modified rank is visible to your friends.**
+---
 
-- [x] **insta locker : Well it should work, just first pick the agent then turn it on before joining a match and itll automatically turn off when you join a match, meaning it locked the agent for you.**
+## How It Works
 
-You can build the source , and download the compiled release [ValoDaiv](https://github.com/McDaived/ValoDaiv/releases)!
+ValoDaiv reads your local Riot Client credentials to authenticate, then communicates with the local Valorant API running on your machine. No credentials are sent anywhere else.
 
-### ![](https://img.icons8.com/?size=60&id=N5H8YRvduAGy&format=svg) Using the source :
-Install the requirements using the following command:
+---
+
+## Usage
+
+### 1. Authorize
+Open Valorant first, then click **Authorize** in the sidebar. This connects the tool to your running game client.
+
+### 2. Skin Changer
+- Browse weapons from the left panel
+- Search and equip any skin
+- ⚠ **Requires a game restart to take effect**
+
+### 3. Rank Editor
+- Select a rank tier and optionally set a leaderboard position
+- Changes appear on your profile when friends open their friends panel (may take 5Mins)
+
+### 4. Customize
+- Change your **Player Card**, **Level Border**, **Title**, **Account Level**, and **Idle Status**
+- ⚠ **Requires a game restart to take effect**
+
+---
+
+## Running from Source
+
+**Install dependencies:**
 ```
-npm i
+npm install
 ```
 
-Run the client side of the application using:
+**Run in development mode** (starts Vite + Electron together):
 ```
-npm run dev
+npm run electron:dev
 ```
 
-Run the application (server side) using the following command:
+---
+
+## Building
+
+**Build a distributable release:**
 ```
-electron.
+npm run electron:build
 ```
-If electron is not installed on your device you can install it by using `npm i electron -g`
 
-### ![](https://img.icons8.com/?size=60&id=695f80k5O5d9&format=svg) build the source :
+This will generate two files inside the `release/` folder:
 
-Install `electron-builder` by using `npm i electron-builder -g`
+| File | Description |
+|------|-------------|
+| `ValoDaiv-x.x.x-win.zip` | Portable — extract and run `ValoDaiv.exe` directly, no installation needed |
+| `ValoDaiv Setup x.x.x.exe` | Installer — double-click to silently install and launch |
 
-* Run `npm run build` to build the client side [Creates directory called "dist"].
+> The zip is the recommended portable option. The installer installs to `AppData\Local\Programs\ValoDaiv\`.
 
-* Rename the directory `dist` to `build`.
+---
 
-* Inside the `build` directory, open the `index.html` file and change the following (Append "." to file locations):
-* * `"/assets/icon-6261825a.ico"` --> `"./assets/icon-6261825a.ico"`
-* * `"/assets/index-5d0004af.js"` --> `"./assets/index-5d0004af.js"`
-* * `"/assets/index-40c62457.css"` --> `"./assets/index-40c62457.css"`
+## Note
 
-* Run `npm run electron:build` in the directory to compile the electron app finally.
-
-# ![](https://img.icons8.com/?size=60&id=y5gZPP6Eb5gS&format=svg) Note :
-This tool usings the API of Valorant to set your collection , not bannable as it just uses the local client api
+This tool uses the **local Valorant client API only** and does not interact with Riot's remote servers in any unauthorized way. It is not bannable.
